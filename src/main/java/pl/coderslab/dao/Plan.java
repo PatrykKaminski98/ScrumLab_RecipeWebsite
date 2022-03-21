@@ -5,17 +5,17 @@ public class Plan {
     private int id;
     private String name;
     private String description;
-    private String date;
+    private String created;
 
 
     public Plan() {
     }
 
-    public Plan(int id, String name, String description, String date) {
+    public Plan(int id, String name, String description, String created) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.date = date;
+        this.created = created;
 
     }
 
@@ -46,12 +46,12 @@ public class Plan {
         return this;
     }
 
-    public String getDate() {
-        return date;
+    public String getCreated() {
+        return created;
     }
 
-    public Plan setDate(String date) {
-        this.date = date;
+    public Plan setCreated(String created) {
+        this.created = created;
         return this;
     }
 
@@ -61,7 +61,7 @@ public class Plan {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", date=" + date +
+                ", created=" + created +
                 '}';
     }
 }
