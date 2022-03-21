@@ -6,17 +6,17 @@ public class Plan {
     private String name;
     private String description;
     private String created;
-
+    private int admin_id;
 
     public Plan() {
     }
 
-    public Plan(int id, String name, String description, String created) {
+    public Plan(int id, String name, String description, String created, int admin_id) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.created = created;
-
+        this.admin_id = admin_id;
     }
 
     public int getId() {
@@ -55,13 +55,23 @@ public class Plan {
         return this;
     }
 
+    public int getAdmin_id() {
+        return admin_id;
+    }
+
+    public Plan setAdmin_id(int admin_id) {
+        this.admin_id = admin_id;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Plan{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", created=" + created +
+                ", created='" + created + '\'' +
+                ", admin_id=" + admin_id +
                 '}';
     }
 }
