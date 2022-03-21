@@ -51,8 +51,8 @@ public class AdminDao {
             statement.setString(2, admin.getLastName());
             statement.setString(3, admin.getEmail());
             statement.setString(4, hashPassword(admin.getPassword()));
-            statement.setInt(5, admin.getSuperadmin());
-            statement.setInt(6, admin.getEnable());
+            statement.setInt(5, 0);
+            statement.setInt(6, 1);
             statement.executeUpdate();
 
             try (ResultSet resultSet = statement.getGeneratedKeys()) {
