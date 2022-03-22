@@ -1,6 +1,7 @@
 package pl.coderslab.dao;
 
 import pl.coderslab.exception.NotFoundException;
+import pl.coderslab.model.Admin;
 import pl.coderslab.utils.DbUtil;
 
 import java.sql.Connection;
@@ -17,7 +18,7 @@ public class PlanDao {
     private static final String FIND_ALL_PLAN_QUERY = "SELECT * FROM plan;";
     private static final String READ_PLAN_QUERY = "SELECT * FROM plan where id = ?;";
     private static final String UPDATE_PLAN_QUERY = "UPDATE plan set name = ?, description = ?, created = ? WHERE id = ?;";
-
+    private static final String GET_NUMBER_OF_PLANS = "SELECT COUNT(id) AS NumberOfPlanes FROM plan WHERE admin_id = ?";
     /**
      * Get plan by id
      *
@@ -150,6 +151,23 @@ public class PlanDao {
             e.printStackTrace();
         }
 
+    }
+
+    public int numberOfPlans(Admin admin){
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(GET_NUMBER_OF_PLANS)
+        ) {
+            statement.setInt(1, admin.getId());
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if(resultSet.next()) {
+                    return resultSet.getInt("NumberOfPlanes");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("Nie znaleziono wyników");
+        return 0;
     }
 
 }
