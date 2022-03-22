@@ -128,4 +128,27 @@ public class AdminDao {
     public String hashPassword (String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
+
+    public Admin loginAuthorization(String email, String password){
+        List<Admin> adminList = findAll();
+        for (Admin admin : adminList) {
+            if(admin.getEmail().equals(email) && BCrypt.checkpw(password, admin.getPassword())){
+                return admin;
+            }
+        }
+        return null;
+    }
+
+    public boolean registerValidate(Admin possibleNewAdmin){
+        List<Admin> adminList = findAll();
+        for (Admin existingAdmin : adminList) {
+            if(existingAdmin.getEmail().equals(possibleNewAdmin.getEmail())){
+                System.out.println("Ten email jest już przypisany do innego konta");
+                return false;
+            }
+        }
+        return true;
+    }
+
+
 }
