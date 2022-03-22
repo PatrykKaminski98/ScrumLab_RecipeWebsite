@@ -21,6 +21,7 @@ public class RecipeDao {
     private static final String READ_RECIPE_QUERY = "SELECT * from recipe where id = ?;";
     private static final String UPDATE_RECIPE_QUERY = "UPDATE	recipe SET name = ? , ingredients = ?, description = ?, created = ?, updated = ?, preparation_time = ?, preparation = ?, admin_id = ? WHERE	id = ?;";
     private static final String GET_NUMBER_OF_RECIPES = "SELECT COUNT(id) AS NumberOfRecipes FROM recipe WHERE admin_id = ?";
+    private static final String GET_NUMBER_OF_PLANS = "SELECT COUNT(id) AS NumberOfPlanes FROM plan WHERE admin_id = ?";
 
     public Recipe read(Integer recipeId) {
         Recipe recipe = new Recipe();
@@ -158,6 +159,23 @@ public class RecipeDao {
 
                 }
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("Nie znaleziono wyników");
+        return 0;
+    }
+
+    public int numberOfPlans(Admin admin){
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(GET_NUMBER_OF_PLANS)
+        ) {
+            statement.setInt(1, admin.getId());
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if(resultSet.next()) {
+                    return resultSet.getInt("NumberOfPlanes");
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

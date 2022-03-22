@@ -16,13 +16,14 @@ public class RecipeDaoTest extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //read
         RecipeDao recipeDao = new RecipeDao();
+        /*
         Recipe recipeRead = recipeDao.read(5);
         System.out.println(recipeRead.toString());
         //findAll
         List<Recipe> recipes = recipeDao.findAll();
         for (Recipe recipe : recipes) {
             System.out.println(recipe);
-        }
+        }*/
 
         /*  create
         Recipe create = recipes.get(8);
@@ -35,9 +36,13 @@ public class RecipeDaoTest extends HttpServlet {
         //recipeDao.update(recipes.get(0));
 
 
-        //test numberOfRecipes
-       AdminDao adminDao = new AdminDao();
-       System.out.println(recipeDao.numberOfRecipes(adminDao.read(1)));
+        // test numberOfRecipes
+       //AdminDao adminDao = new AdminDao();
+       //System.out.println(recipeDao.numberOfRecipes(adminDao.read(1)));
+
+        //test numberOfPlans
+        AdminDao adminDao = new AdminDao();
+        System.out.println(recipeDao.numberOfPlans(adminDao.read(4)));
 
 
     }
