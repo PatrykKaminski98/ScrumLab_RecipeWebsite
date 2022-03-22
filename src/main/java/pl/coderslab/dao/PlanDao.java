@@ -13,11 +13,11 @@ import java.util.List;
 
 public class PlanDao {
 
-    private static final String CREATE_PLAN_QUERY = "INSERT INTO plan (name, description, created) VALUES (?,?,?);";
+    private static final String CREATE_PLAN_QUERY = "INSERT INTO plan (name, description, created, admin_id) VALUES (?,?,?,?);";
     private static final String DELETE_PLAN_QUERY = "DELETE FROM plan where id = ?;";
     private static final String FIND_ALL_PLAN_QUERY = "SELECT * FROM plan;";
     private static final String READ_PLAN_QUERY = "SELECT * FROM plan where id = ?;";
-    private static final String UPDATE_PLAN_QUERY = "UPDATE plan set name = ?, description = ?, created = ? WHERE id = ?;";
+    private static final String UPDATE_PLAN_QUERY = "UPDATE plan set name = ?, description = ?, created = ?, admin_id = ? WHERE id = ?;";
     private static final String GET_NUMBER_OF_PLANS = "SELECT COUNT(id) AS NumberOfPlanes FROM plan WHERE admin_id = ?";
     /**
      * Get plan by id
@@ -36,7 +36,7 @@ public class PlanDao {
                     plan.setId(resultSet.getInt("id"));
                     plan.setName(resultSet.getString("name"));
                     plan.setDescription(resultSet.getString("description"));
-                    plan.setCreated(resultSet.getString("date"));
+                    plan.setCreated(resultSet.getString("created"));
                     plan.setAdmin_id(resultSet.getInt("admin_id"));
 
                 }
@@ -64,7 +64,7 @@ public class PlanDao {
                 planToAdd.setId(resultSet.getInt("id"));
                 planToAdd.setName(resultSet.getString("name"));
                 planToAdd.setDescription(resultSet.getString("description"));
-                planToAdd.setCreated(resultSet.getString("date"));
+                planToAdd.setCreated(resultSet.getString("created"));
                 planToAdd.setAdmin_id(resultSet.getInt("admin_id"));
                 planList.add(planToAdd);
             }
@@ -89,6 +89,7 @@ public class PlanDao {
             insertStm.setString(1, plan.getName());
             insertStm.setString(2, plan.getDescription());
             insertStm.setString(3, plan.getCreated());
+            insertStm.setInt(4, plan.getAdmin_id());
             int result = insertStm.executeUpdate();
 
             if (result != 1) {
@@ -140,11 +141,11 @@ public class PlanDao {
     public void update(Plan plan) {
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_PLAN_QUERY)) {
-            statement.setInt(4, plan.getId());
+            statement.setInt(5, plan.getId());
             statement.setString(1, plan.getName());
             statement.setString(2, plan.getDescription());
             statement.setString(3, plan.getCreated());
-            statement.setInt(   3, plan.getAdmin_id());
+            statement.setInt(   4, plan.getAdmin_id());
 
             statement.executeUpdate();
         } catch (Exception e) {
