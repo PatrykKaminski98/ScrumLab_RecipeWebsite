@@ -1,6 +1,7 @@
 package pl.coderslab.dao;
 
 import pl.coderslab.exception.NotFoundException;
+import pl.coderslab.model.Admin;
 import pl.coderslab.model.Recipe;
 import pl.coderslab.utils.DbUtil;
 
@@ -19,6 +20,7 @@ public class RecipeDao {
     private static final String FIND_ALL_RECIPES_QUERY = "SELECT * FROM recipe;";
     private static final String READ_RECIPE_QUERY = "SELECT * from recipe where id = ?;";
     private static final String UPDATE_RECIPE_QUERY = "UPDATE	recipe SET name = ? , ingredients = ?, description = ?, created = ?, updated = ?, preparation_time = ?, preparation = ?, admin_id = ? WHERE	id = ?;";
+    private static final String GET_NUMBER_OF_RECIPES = "SELECT COUNT(id) AS NumberOfRecipes FROM recipe WHERE admin_id = ?";
 
     public Recipe read(Integer recipeId) {
         Recipe recipe = new Recipe();
@@ -142,5 +144,24 @@ public class RecipeDao {
             e.printStackTrace();
         }
 
+    }
+
+    public int numberOfRecipes(Admin admin){
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(GET_NUMBER_OF_RECIPES)
+        ) {
+            statement.setInt(1, admin.getId());
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if(resultSet.next()) {
+                    return resultSet.getInt("NumberOfRecipes");
+                }
+
+                }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("Nie znaleziono wyników");
+        return 0;
     }
 }

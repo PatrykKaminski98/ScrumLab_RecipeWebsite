@@ -1,5 +1,6 @@
 package pl.coderslab.web;
 
+import pl.coderslab.dao.AdminDao;
 import pl.coderslab.dao.RecipeDao;
 import pl.coderslab.model.Recipe;
 
@@ -31,6 +32,11 @@ public class RecipeDaoTest extends HttpServlet {
 
         //  update
         //recipeDao.update(recipes.get(0));
+
+
+        //test numberOfRecipes
+       AdminDao adminDao = new AdminDao();
+       System.out.println(recipeDao.numberOfRecipes(adminDao.read(1)));
 
 
     }
