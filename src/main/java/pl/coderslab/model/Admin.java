@@ -27,6 +27,8 @@ public class Admin {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.superAdmin = 0;
+        this.enable = 1;
     }
 
     public int getId() {
