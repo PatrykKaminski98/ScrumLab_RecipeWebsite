@@ -6,6 +6,7 @@ public class PlanDetails {
     private String mealName;
     private String recipeName;
     private String recipeDescription;
+    private String recipeId;
 
     public String getDayName() {
         return dayName;
@@ -47,6 +48,14 @@ public class PlanDetails {
         this.planName = planName;
     }
 
+    public String getRecipeId() {
+        return recipeId;
+    }
+
+    public void setRecipeId(String recipeId) {
+        this.recipeId = recipeId;
+    }
+
     @Override
     public String toString() {
         return "PlanDetails{" +
@@ -55,6 +64,7 @@ public class PlanDetails {
                 ", mealName='" + mealName + '\'' +
                 ", recipeName='" + recipeName + '\'' +
                 ", recipeDescription='" + recipeDescription + '\'' +
+                ", recipeId=" + recipeId +
                 '}';
     }
 }

@@ -13,6 +13,8 @@ public class RecipeDetails extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
+
+
             int id = Integer.parseInt(request.getParameter("id"));
             RecipeDao recipeDao = new RecipeDao();
             Recipe recipe = recipeDao.read(id);
