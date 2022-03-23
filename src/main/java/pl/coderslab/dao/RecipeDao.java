@@ -20,6 +20,7 @@ public class RecipeDao {
     private static final String READ_RECIPE_QUERY = "SELECT * from recipe where id = ?;";
     private static final String UPDATE_RECIPE_QUERY = "UPDATE	recipe SET name = ? , ingredients = ?, description = ?, created = ?, updated = ?, preparation_time = ?, preparation = ?, admin_id = ? WHERE	id = ?;";
     private static final String GET_NUMBER_OF_RECIPES = "SELECT COUNT(id) AS NumberOfRecipes FROM recipe WHERE admin_id = ?";
+    private static final String FORMAT_DATA_TIME = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
     public Recipe read(Integer recipeId) {
         Recipe recipe = new Recipe();
@@ -77,8 +78,8 @@ public class RecipeDao {
             insertStm.setString(1, recipe.getName());
             insertStm.setString(2, recipe.getIngredients());
             insertStm.setString(3, recipe.getDescription());
-            insertStm.setString(4, recipe.getCreated());
-            insertStm.setString(5, recipe.getUpdated());
+            insertStm.setString(4, FORMAT_DATA_TIME);
+            insertStm.setString(5, FORMAT_DATA_TIME);
             insertStm.setInt(6, recipe.getPreparationTime());
             insertStm.setString(7, recipe.getPreparation());
             insertStm.setInt(8, recipe.getAdminId());
@@ -115,9 +116,6 @@ public class RecipeDao {
     }
 
     public void update(Recipe recipe) {
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String formatDateTime = now.format(formatter);
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_RECIPE_QUERY)) {
             statement.setInt(9, recipe.getId());
@@ -125,7 +123,7 @@ public class RecipeDao {
             statement.setString(2, recipe.getIngredients());
             statement.setString(3, recipe.getDescription());
             statement.setString(4, recipe.getCreated());
-            statement.setString(5, formatDateTime);
+            statement.setString(5, FORMAT_DATA_TIME);
             statement.setInt(6, recipe.getPreparationTime());
             statement.setString(7, recipe.getPreparation());
             statement.setInt(8, recipe.getAdminId());
