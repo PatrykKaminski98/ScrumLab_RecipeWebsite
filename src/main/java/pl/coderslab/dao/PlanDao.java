@@ -19,7 +19,7 @@ public class PlanDao {
 
     private static final String CREATE_PLAN_QUERY = "INSERT INTO plan (name, description, created, admin_id) VALUES (?,?,?,?);";
     private static final String DELETE_PLAN_QUERY = "DELETE FROM plan where id = ?;";
-    private static final String FIND_ALL_PLAN_QUERY = "SELECT * FROM plan;";
+    private static final String FIND_ALL_PLAN_QUERY = "SELECT * FROM plan WHERE admin_id = ? ORDER BY created DESC;";
     private static final String READ_PLAN_QUERY = "SELECT * FROM plan where id = ?;";
     private static final String UPDATE_PLAN_QUERY = "UPDATE plan set name = ?, description = ?, created = ?, admin_id = ? WHERE id = ?;";
     private static final String GET_NUMBER_OF_PLANS = "SELECT COUNT(id) AS NumberOfPlanes FROM plan WHERE admin_id = ?";
@@ -62,12 +62,13 @@ public class PlanDao {
      *
      * @return
      */
-    public List<Plan> findAll() {
+    public List<Plan> findAll(Admin admin) {
         List<Plan> planList = new ArrayList<>();
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_ALL_PLAN_QUERY);
-             ResultSet resultSet = statement.executeQuery()) {
-
+             ) {
+            statement.setInt(1, admin.getId());
+            ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Plan planToAdd = new Plan();
                 planToAdd.setId(resultSet.getInt("id"));
