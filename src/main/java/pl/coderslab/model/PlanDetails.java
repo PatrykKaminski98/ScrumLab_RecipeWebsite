@@ -1,6 +1,7 @@
 package pl.coderslab.model;
 
 public class PlanDetails {
+    private String planName;
     private String dayName;
     private String mealName;
     private String recipeName;
@@ -36,5 +37,24 @@ public class PlanDetails {
 
     public void setRecipeDescription(String recipeDescription) {
         this.recipeDescription = recipeDescription;
+    }
+
+    public String getPlanName() {
+        return planName;
+    }
+
+    public void setPlanName(String planName) {
+        this.planName = planName;
+    }
+
+    @Override
+    public String toString() {
+        return "PlanDetails{" +
+                "planName='" + planName + '\'' +
+                ", dayName='" + dayName + '\'' +
+                ", mealName='" + mealName + '\'' +
+                ", recipeName='" + recipeName + '\'' +
+                ", recipeDescription='" + recipeDescription + '\'' +
+                '}';
     }
 }
