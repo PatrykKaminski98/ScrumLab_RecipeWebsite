@@ -60,7 +60,7 @@
                                             <a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
                                         </td>
                                         <td class="col-2 center">
-                                            <a href="${pageContext.request.contextPath}/app/recipe/details?id=${}"
+                                            <a href="${pageContext.request.contextPath}/app/recipe/details?id=${details.getRecipeId()}"
                                                class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
                                         </td>
                                     </tr>
