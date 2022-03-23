@@ -3,16 +3,12 @@ package pl.coderslab.web.app;
 import pl.coderslab.dao.PlanDao;
 import pl.coderslab.dao.RecipeDao;
 import pl.coderslab.model.Admin;
-import pl.coderslab.model.Plan;
 import pl.coderslab.model.PlanDetails;
-import pl.coderslab.model.Recipe;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
