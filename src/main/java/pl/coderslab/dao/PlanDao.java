@@ -26,7 +26,23 @@ public class PlanDao {
     private static final String GET_PLAN_DETAILS = "SELECT plan.name as name, recipe.id, day_name.name as day_name, meal_name, recipe.name as recipe_name, recipe.description as recipe_description FROM `recipe_plan` JOIN plan on plan.id=recipe_plan.plan_id JOIN day_name on day_name.id=day_name_id JOIN recipe on recipe.id=recipe_id WHERE recipe_plan.plan_id =  (SELECT MAX(id) from plan WHERE plan_id = ?)ORDER by day_name.display_order, recipe_plan.display_order;";
     private static final String GET_LAST_PLAN = "SELECT plan.name as name, recipe.id, day_name.name as day_name, meal_name, recipe.name as recipe_name, recipe.description as recipe_description FROM `recipe_plan` JOIN plan on plan.id=recipe_plan.plan_id JOIN day_name on day_name.id=day_name_id JOIN recipe on recipe.id=recipe_id WHERE recipe_plan.plan_id =  (SELECT MAX(id) from plan WHERE admin_id = ?)ORDER by day_name.display_order, recipe_plan.display_order;";
     private static final String FORMAT_DATA_TIME = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    private static final String GET_PLAN_ID = "SELECT id FROM plan WHERE name = ?";
 
+    public int getPlanId(String name){
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(GET_PLAN_ID)
+        ) {
+            statement.setString(1, name);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    return resultSet.getInt("id");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
   /**
      *
      * Get plan by id

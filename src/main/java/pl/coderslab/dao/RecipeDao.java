@@ -16,12 +16,13 @@ import java.util.List;
 public class RecipeDao {
     private static final String CREATE_RECIPE_QUERY = "INSERT INTO recipe(name,ingredients,description,created,updated,preparation_time,preparation,admin_id) VALUES (?,?,?,?,?,?,?,?);";
     private static final String DELETE_RECIPE_QUERY = "DELETE FROM recipe where id = ?;";
-    private static final String FIND_ALL_RECIPES_QUERY = "SELECT * FROM recipe;";
+    private static final String FIND_ALL_RECIPES_QUERY = "SELECT * FROM recipe WHERE admin_id = ?;";
     private static final String READ_RECIPE_QUERY = "SELECT * from recipe where id = ?;";
     private static final String UPDATE_RECIPE_QUERY = "UPDATE	recipe SET name = ? , ingredients = ?, description = ?, created = ?, updated = ?, preparation_time = ?, preparation = ?, admin_id = ? WHERE	id = ?;";
     private static final String GET_NUMBER_OF_RECIPES = "SELECT COUNT(id) AS NumberOfRecipes FROM recipe WHERE admin_id = ?";
     private static final String FORMAT_DATA_TIME = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-
+    private static final String ADD_RECIPE_TO_PLAN = "INSERT INTO recipe_plan(recipe_id,meal_name,display_order,day_name_id,plan_id) VALUES (?,?,?,?,?);";
+    private static final String GET_RECIPE_ID = "SELECT id FROM recipe WHERE name = ?";
     public Recipe read(Integer recipeId) {
         Recipe recipe = new Recipe();
         try (Connection connection = DbUtil.getConnection();
@@ -47,11 +48,12 @@ public class RecipeDao {
         return recipe;
     }
 
-    public List<Recipe> findAll() {
+    public List<Recipe> findAll(Admin admin) {
         List<Recipe> recipeList = new ArrayList<>();
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(FIND_ALL_RECIPES_QUERY);
-             ResultSet resultSet = statement.executeQuery()) {
+             PreparedStatement statement = connection.prepareStatement(FIND_ALL_RECIPES_QUERY)) {
+            statement.setInt(1, admin.getId());
+            ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Recipe recipe = new Recipe();
                 recipe.setId(resultSet.getInt("id"));
@@ -150,6 +152,47 @@ public class RecipeDao {
             e.printStackTrace();
         }
         System.out.println("Nie znaleziono wyników");
+        return 0;
+    }
+
+    public void addRecipeToPlan(int recipe_id, String meal_name, int display_order, int day_name_id, int plan_id){
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement insertStm = connection.prepareStatement(ADD_RECIPE_TO_PLAN,
+                     PreparedStatement.RETURN_GENERATED_KEYS)) {
+            insertStm.setInt(1, recipe_id);
+            insertStm.setString(2, meal_name);
+            insertStm.setInt(3, display_order);
+            insertStm.setInt(4, day_name_id);
+            insertStm.setInt(5, plan_id);
+            int result = insertStm.executeUpdate();
+            if (result != 1) {
+                throw new RuntimeException("Execute update returned " + result);
+            }
+            try (ResultSet generatedKeys = insertStm.getGeneratedKeys()) {
+                if (generatedKeys.first()) {
+                    return;
+                } else {
+                    throw new RuntimeException("Generated key was not found");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int getRecipeId(String name){
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(GET_RECIPE_ID)
+        ) {
+            statement.setString(1, name);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    return resultSet.getInt("id");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 }
