@@ -42,12 +42,20 @@ public class AddRecipeToPlan extends HttpServlet {
         try{
             String planName = request.getParameter("planName");
             String mealName = request.getParameter("mealName");
-            int numberMeal = Integer.parseInt(request.getParameter("numberMeal"));
+            int displayOrder = Integer.parseInt(request.getParameter("numberMeal"));
             String recipeName = request.getParameter("recipeName");
-            System.out.println(planName);
-            System.out.println(mealName);
-            System.out.println(numberMeal);
-            System.out.println(recipeName);
+            String dayName = request.getParameter("day");
+            PlanDao planDao = new PlanDao();
+            RecipeDao recipeDao = new RecipeDao();
+            DayNameDao dayNameDao = new DayNameDao();
+
+
+            int recipeId = recipeDao.getRecipeId(recipeName);
+            int dayId = dayNameDao.getDayId(dayName);
+            int planId = planDao.getPlanId(planName);
+
+            recipeDao.addRecipeToPlan(recipeId, mealName, displayOrder, dayId, planId);
+            response.sendRedirect("/app/recipe/plan/add");
         } catch (NumberFormatException e){
             e.printStackTrace();
         }
