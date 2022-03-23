@@ -12,6 +12,7 @@ public class LoginSessionTest extends HttpServlet {
         //Do wywalenia potem
         HttpSession session = request.getSession();
         System.out.println(session.getAttribute("admin")); //co widzi server
+        System.out.println(session.getAttribute("adminName")); //co widzi server
         response.getWriter().println("Dziala"); // wskazuje na dostep do strony
     }
 

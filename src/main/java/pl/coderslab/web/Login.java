@@ -25,7 +25,8 @@ public class Login extends HttpServlet {
         if(admin != null){
             HttpSession session = request.getSession();
             session.setAttribute("admin", admin);
-            response.sendRedirect("/");
+
+            response.sendRedirect("/app/dashboard");
         } else {
             request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
         }
