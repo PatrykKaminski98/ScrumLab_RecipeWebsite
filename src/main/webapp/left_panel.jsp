@@ -2,13 +2,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <ul class="nav flex-column long-bg">
     <li class="nav-item">
-        <a class="nav-link" href="/dashboard.html">
+        <a class="nav-link" href="${pageContext.request.contextPath}/app/dashboard">
             <span>Pulpit</span>
             <i class="fas fa-angle-right"></i>
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/app-recipes.html">
+        <a class="nav-link" href="${pageContext.request.contextPath}/app/recipe/list">
             <span>Przepisy</span>
             <i class="fas fa-angle-right"></i>
         </a>

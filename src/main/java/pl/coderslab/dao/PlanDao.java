@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,8 +23,10 @@ public class PlanDao {
     private static final String READ_PLAN_QUERY = "SELECT * FROM plan where id = ?;";
     private static final String UPDATE_PLAN_QUERY = "UPDATE plan set name = ?, description = ?, created = ?, admin_id = ? WHERE id = ?;";
     private static final String GET_NUMBER_OF_PLANS = "SELECT COUNT(id) AS NumberOfPlanes FROM plan WHERE admin_id = ?";
-    private static final String GET_LAST_PLAN = "SELECT plan.name as name, day_name.name as day_name, meal_name, recipe.name as recipe_name, recipe.description as recipe_description FROM `recipe_plan` JOIN plan on plan.id=recipe_plan.plan_id JOIN day_name on day_name.id=day_name_id JOIN recipe on recipe.id=recipe_id WHERE recipe_plan.plan_id =  (SELECT MAX(id) from plan WHERE admin_id = ?)ORDER by day_name.display_order, recipe_plan.display_order;";
-    /**
+    private static final String GET_LAST_PLAN = "SELECT day_name.name as day_name, meal_name, recipe.name as recipe_name, recipe.description as recipe_description FROM `recipe_plan` JOIN day_name on day_name.id=day_name_id JOIN recipe on recipe.id=recipe_id WHERE recipe_plan.plan_id =  (SELECT MAX(id) from plan WHERE admin_id = ?)ORDER by day_name.display_order, recipe_plan.display_order;";
+    private static final String FORMAT_DATA_TIME = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+  /**
      *
      * Get plan by id
      *
@@ -92,7 +96,7 @@ public class PlanDao {
                      PreparedStatement.RETURN_GENERATED_KEYS)) {
             insertStm.setString(1, plan.getName());
             insertStm.setString(2, plan.getDescription());
-            insertStm.setString(3, plan.getCreated());
+            insertStm.setString(3, FORMAT_DATA_TIME);
             insertStm.setInt(4, plan.getAdmin_id());
             int result = insertStm.executeUpdate();
 
