@@ -32,7 +32,11 @@ public class Dashboard extends HttpServlet {
             request.setAttribute("recipe", numberOfRecipes);
 
             List<PlanDetails> lastPlan = planDao.getLastPlan(admin);
-            if(lastPlan.size() > 0) {
+
+            for (PlanDetails planDetails : lastPlan) {
+                System.out.println(planDetails);
+            }
+            if (lastPlan.size() > 0) {
                 request.setAttribute("plan", lastPlan);
                 request.setAttribute("planDays", getPlanDays(lastPlan));
                 request.setAttribute("planName", getPlanName(lastPlan));
