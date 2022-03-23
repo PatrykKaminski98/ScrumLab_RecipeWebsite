@@ -25,7 +25,8 @@ public class PlanDao {
     private static final String GET_NUMBER_OF_PLANS = "SELECT COUNT(id) AS NumberOfPlanes FROM plan WHERE admin_id = ?";
     private static final String GET_LAST_PLAN = "SELECT day_name.name as day_name, meal_name, recipe.name as recipe_name, recipe.description as recipe_description FROM `recipe_plan` JOIN day_name on day_name.id=day_name_id JOIN recipe on recipe.id=recipe_id WHERE recipe_plan.plan_id =  (SELECT MAX(id) from plan WHERE admin_id = ?)ORDER by day_name.display_order, recipe_plan.display_order;";
     private static final String FORMAT_DATA_TIME = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-    /**
+
+  /**
      *
      * Get plan by id
      *
@@ -191,6 +192,7 @@ public class PlanDao {
                     planDetails.setMealName(resultSet.getString("meal_name"));
                     planDetails.setRecipeName(resultSet.getString("recipe_name"));
                     planDetails.setRecipeDescription(resultSet.getString("recipe_description"));
+                    planDetails.setPlanName(resultSet.getString("name"));
                     planDetailsList.add(planDetails);
                 }
             }
