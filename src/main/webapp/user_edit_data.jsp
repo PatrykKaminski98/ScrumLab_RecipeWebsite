@@ -20,7 +20,7 @@
                         <div class="row border-bottom border-3">
                             <div class="col"><h3 class="color-header text-uppercase">Edytuj dane</h3></div>
                             <div class="col d-flex justify-content-end mb-2">
-                                <button type="submit" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">Zapisz
+                                <button id="submit" type="submit" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">Zapisz
                                 </button>
                             </div>
                         </div>
@@ -30,19 +30,19 @@
                             <tr class="d-flex">
                                 <th scope="row" class="col-2"><h4>Imię</h4></th>
                                 <td class="col-7">
-                                    <input name="firstName" class="w-100 p-1" value="${admin.getFirstName()}">
+                                    <input id="firstName" name="firstName" class="w-100 p-1" value="${admin.getFirstName()}">
                                 </td>
                             </tr>
                             <tr class="d-flex">
                                 <th scope="row" class="col-2"><h4>Nazwisko</h4></th>
                                 <td class="col-7">
-                                    <input name="lastName" class="w-100 p-1" value="${admin.getLastName()}">
+                                    <input id="lastName" name="lastName" class="w-100 p-1" value="${admin.getLastName()}">
                                 </td>
                             </tr>
                             <tr class="d-flex">
                                 <th scope="row" class="col-2"><h4>Email</h4></th>
                                 <td class="col-3">
-                                    <input name="email" class="p-1 w-100" type="text" value="${admin.getEmail()}">
+                                    <input id="email" name="email" class="p-1 w-100" type="text" value="${admin.getEmail()}">
                                 </td>
                             </tr>
                             </tbody>
@@ -53,3 +53,5 @@
         </div>
     </div>
 </section>
+<script src="${pageContext.request.contextPath}/js/user_edit_data.js"></script>
+<jsp:include page="footer.jsp"/>
