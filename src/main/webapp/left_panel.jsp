@@ -20,7 +20,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/app-edit-user-data.html">
+        <a class="nav-link" href="${pageContext.request.contextPath}/app/user/edit">
             <span>Edytuj dane</span>
             <i class="fas fa-angle-right"></i>
         </a>
