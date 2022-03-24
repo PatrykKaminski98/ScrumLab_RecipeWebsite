@@ -24,7 +24,7 @@ public class AllRecipeList extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             String search = request.getParameter("search");
             String regex = ".*".concat(search).concat(".*");
-            System.out.println(regex);
+
 
             RecipeDao recipeDao = new RecipeDao();
             List<Recipe> allRecipes = recipeDao.findAbsoluteAll();

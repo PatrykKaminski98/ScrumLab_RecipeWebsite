@@ -34,10 +34,17 @@ public class Register extends HttpServlet {
         admin.setLastName(surname);
         admin.setEmail(email);
         admin.setPassword(pass1);
+        if(adminDao.registerValidate(admin)){
+            adminDao.create(admin);
+            response.sendRedirect("/login");
+        } else {
+            request.getServletContext().getRequestDispatcher("/badregistration.jsp").forward(request, response);
 
-        adminDao.create(admin);
+        }
 
-        response.sendRedirect("/login");
+
+
+
 
     }
 }
