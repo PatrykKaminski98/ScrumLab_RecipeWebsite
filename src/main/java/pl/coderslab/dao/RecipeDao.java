@@ -23,6 +23,24 @@ public class RecipeDao {
     private static final String FORMAT_DATA_TIME = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     private static final String ADD_RECIPE_TO_PLAN = "INSERT INTO recipe_plan(recipe_id,meal_name,display_order,day_name_id,plan_id) VALUES (?,?,?,?,?);";
     private static final String GET_RECIPE_ID = "SELECT id FROM recipe WHERE name = ?";
+    private static final String DELETE_RECIPE_FROM_PLAN = "DELETE FROM recipe_plan WHERE recipe_id = ? AND plan_id = ? AND meal_name = ?";
+
+    public void deleteRecipeFromPlan(int recipeId, int planId, String mealName) {
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(DELETE_RECIPE_FROM_PLAN )) {
+            statement.setInt(1, recipeId);
+            statement.setInt(2, planId);
+            statement.setString(3, mealName);
+            statement.executeUpdate();
+            boolean deleted = statement.execute();
+            if (!deleted) {
+                throw new NotFoundException("Recipe not found");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public Recipe read(Integer recipeId) {
         Recipe recipe = new Recipe();
         try (Connection connection = DbUtil.getConnection();
