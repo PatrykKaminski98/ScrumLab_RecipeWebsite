@@ -57,7 +57,7 @@
                                         <td class="col-2">${details.getMealName()}</td>
                                         <td class="col-7">${details.getRecipeName()}</td>
                                         <td class="col-1 center">
-                                            <a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                            <a href="${pageContext.request.contextPath}/app/recipe/delete?recipeId=${details.getRecipeId()}&planId=${plan.id}&mealName=${details.getMealName()}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
                                         </td>
                                         <td class="col-2 center">
                                             <a href="${pageContext.request.contextPath}/app/recipe/details?id=${details.getRecipeId()}"
