@@ -7,10 +7,9 @@ deleteButtons.forEach(function (element) {
 
         if (confirmAction) {
 
-            console.log("chce");
         } else {
+
             e.preventDefault();
-            console.log("nie chce");
         }
     });
 });
