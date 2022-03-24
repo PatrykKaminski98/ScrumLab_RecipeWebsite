@@ -32,7 +32,7 @@ public class EditUserData extends HttpServlet {
         adminToEdit.setLastName(lastName);
         adminToEdit.setEmail(email);
 
-        adminDao.update(adminToEdit);
+        adminDao.updateUserData(adminToEdit);
         session.setAttribute("admin",adminToEdit);
 
         response.sendRedirect("/app/dashboard");

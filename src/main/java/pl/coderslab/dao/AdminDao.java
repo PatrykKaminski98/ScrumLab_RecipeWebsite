@@ -18,7 +18,7 @@ public class AdminDao {
     private static final String FIND_ALL_ADMIN_QUERY = "SELECT * FROM admins;";
     private static final String READ_ADMIN_QUERY = "SELECT * FROM admins where id = ?;";
     private static final String UPDATE_ADMIN_QUERY = "UPDATE admins set first_name = ?, last_name = ?, email = ?, password = ?, superadmin = ?, enable = ? WHERE id = ?;";
-
+    private static final String UPDATE_ADMIN_DATA_QUERY = "UPDATE admins set first_name = ?, last_name = ?, email = ? WHERE id = ?;";
 
     public Admin read(Integer adminId) {
         try (Connection connection = DbUtil.getConnection();
@@ -108,7 +108,6 @@ public class AdminDao {
     }
 
     public void update (Admin admin) {
-
         try (Connection connection = DbUtil.getConnection();
         PreparedStatement statement = connection.prepareStatement(UPDATE_ADMIN_QUERY)) {
             statement.setInt(7,admin.getId());
@@ -118,6 +117,20 @@ public class AdminDao {
             statement.setString(4,hashPassword(admin.getPassword()));
             statement.setInt(5,admin.getSuperadmin());
             statement.setInt(6,admin.getEnable());
+
+            statement.executeUpdate();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateUserData (Admin admin) {
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(UPDATE_ADMIN_DATA_QUERY)) {
+            statement.setInt(4,admin.getId());
+            statement.setString(1,admin.getFirstName());
+            statement.setString(2,admin.getLastName());
+            statement.setString(3,admin.getEmail());
 
             statement.executeUpdate();
         }catch (Exception e) {

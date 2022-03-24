@@ -32,10 +32,6 @@ public class RecipeDao {
             statement.setInt(2, planId);
             statement.setString(3, mealName);
             statement.executeUpdate();
-            boolean deleted = statement.execute();
-            if (!deleted) {
-                throw new NotFoundException("Recipe not found");
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
