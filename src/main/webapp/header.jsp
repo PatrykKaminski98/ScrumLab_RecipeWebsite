@@ -18,7 +18,7 @@
 <body>
 <header class="page-header">
     <nav class="navbar navbar-expand-lg justify-content-around">
-        <a href="/" class="navbar-brand main-logo">
+        <a href="${pageContext.request.contextPath}/login" class="navbar-brand main-logo">
             Zaplanuj <span>Jedzonko</span>
         </a>
         <ul class="nav nounderline text-uppercase">
@@ -32,7 +32,7 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/about">o aplikacji</a>
             </li>
             <li class="nav-item ml-4">
-                <a class="nav-link disabled" href="recipes.html">Przepisy</a>
+                <a class="nav-link disabled" href="${pageContext.request.contextPath}/allRecipesList">Przepisy</a>
             </li>
             <li class="nav-item ml-4">
                 <a class="nav-link disabled" href="${pageContext.request.contextPath}/contact">Kontakt</a>
