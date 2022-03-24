@@ -2,7 +2,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <jsp:include page="headerLoggedIn.jsp"/>
-
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.getElementsByClassName("btn-danger");
+        Array.from(buttons).forEach(function(button){
+            button.addEventListener("click", function(event){
+                if(confirm('Czy na pewno chcesz usunąć przepis?')) {
+                    return;
+                } else {
+                    event.preventDefault();
+                }
+            })
+        })
+    });
+</script>
 <section class="dashboard-section">
     <div class="row dashboard-nowrap">
         <jsp:include page="left_panel.jsp"/>
@@ -31,8 +44,8 @@
                             </td>
                             <td class="col-7">${recipe.description}</td>
                             <td class="col-2 d-flex align-items-center justify-content-center flex-wrap">
-                                <a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
-                                <a href="${pageContext.request.contextPath}/app/recipe/details?id=${recipe.id}" class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
+                                <a href="${pageContext.request.contextPath}/app/recipe/delete?id=${recipe.id}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                <a  href="${pageContext.request.contextPath}/app/recipe/details?id=${recipe.id}" class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
                                 <a href="${pageContext.request.contextPath}/app/recipe/edit?id=${recipe.id}" class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>
                             </td>
                         </tr>
@@ -43,4 +56,5 @@
         </div>
     </div>
 </section>
+
 <jsp:include page="footer.jsp"/>

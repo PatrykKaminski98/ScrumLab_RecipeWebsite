@@ -7,20 +7,15 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "DeletePlan", value = "/app/recipe/deleteFromPlan")
-public class DeleteRecipeFromPlan extends HttpServlet {
+@WebServlet(name = "DeleteRecipe", value = "/app/recipe/delete")
+public class DeleteRecipe extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int recipeId = Integer.parseInt(request.getParameter("recipeId"));
-        int planId = Integer.parseInt(request.getParameter("planId"));
-        String mealName = request.getParameter("mealName");
-
+        int recipeId = Integer.parseInt(request.getParameter("id"));
         RecipeDao recipeDao = new RecipeDao();
-        recipeDao.deleteRecipeFromPlan(recipeId, planId, mealName);
+        recipeDao.delete(recipeId);
 
-
-        response.sendRedirect("/app/plan/details?id=" + planId);
-
+        response.sendRedirect("/app/recipe/list");
     }
 
     @Override

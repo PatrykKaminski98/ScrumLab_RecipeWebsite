@@ -211,7 +211,7 @@ public class PlanDao {
                     planDetails.setRecipeName(resultSet.getString("recipe_name"));
                     planDetails.setRecipeDescription(resultSet.getString("recipe_description"));
                     planDetails.setPlanName(resultSet.getString("name"));
-                    planDetails.setRecipeId(resultSet.getString("id"));
+                    planDetails.setRecipeId(resultSet.getInt("id"));
                     planDetailsList.add(planDetails);
                 }
             }
@@ -235,7 +235,7 @@ public class PlanDao {
                     planDetails.setRecipeName(resultSet.getString("recipe_name"));
                     planDetails.setRecipeDescription(resultSet.getString("recipe_description"));
                     planDetails.setPlanName(resultSet.getString("name"));
-                    planDetails.setRecipeId(resultSet.getString("id"));
+                    planDetails.setRecipeId(resultSet.getInt("id"));
                     planDetailsList.add(planDetails);
                 }
             }

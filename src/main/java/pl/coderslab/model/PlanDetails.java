@@ -6,7 +6,7 @@ public class PlanDetails {
     private String mealName;
     private String recipeName;
     private String recipeDescription;
-    private String recipeId;
+    private int recipeId;
 
     public String getDayName() {
         return dayName;
@@ -48,11 +48,11 @@ public class PlanDetails {
         this.planName = planName;
     }
 
-    public String getRecipeId() {
+    public int getRecipeId() {
         return recipeId;
     }
 
-    public void setRecipeId(String recipeId) {
+    public void setRecipeId(int recipeId) {
         this.recipeId = recipeId;
     }
 

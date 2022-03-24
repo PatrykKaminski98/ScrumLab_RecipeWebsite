@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <jsp:include page="headerLoggedIn.jsp"></jsp:include>
-
 <section class="dashboard-section">
     <div class="row dashboard-nowrap">
 
@@ -57,10 +56,10 @@
                                         <td class="col-2">${details.getMealName()}</td>
                                         <td class="col-7">${details.getRecipeName()}</td>
                                         <td class="col-1 center">
-                                            <a href="${pageContext.request.contextPath}/app/recipe/delete?recipeId=${details.getRecipeId()}&planId=${plan.id}&mealName=${details.getMealName()}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                            <a id="delete" href="${pageContext.request.contextPath}/app/recipe/deleteFromPlan?recipeId=${details.getRecipeId()}&planId=${plan.id}&mealName=${details.getMealName()}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
                                         </td>
                                         <td class="col-2 center">
-                                            <a href="${pageContext.request.contextPath}/app/recipe/details?id=${details.getRecipeId()}"
+                                            <a href="${pageContext.request.contextPath}/app/recipe/details?id=${details.recipeId}"
                                                class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
                                         </td>
                                     </tr>
@@ -75,5 +74,15 @@
         </div>
     </div>
 </section>
+<script>
+    const button = document.getElementById("delete");
+    button.addEventListener("click", function(event){
+        if(confirm('Czy na pewno chcesz usunąć przepis z planu?')) {
+                return;
+        } else {
+            event.preventDefault();
+        }
+    })
+</script>
 
 <jsp:include page="footer.jsp"></jsp:include>
