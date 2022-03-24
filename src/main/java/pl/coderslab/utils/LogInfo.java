@@ -24,8 +24,10 @@ public class LogInfo implements Filter {
 
         if(session.getAttribute("admin") != null) {
             chain.doFilter(request, response);
+        } else {
+            httpServletResponse.sendRedirect("/login");
         }
-        httpServletResponse.sendRedirect("/login");
+
 
     }
 }
