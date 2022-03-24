@@ -22,10 +22,10 @@ public class LogInfo implements Filter {
 
         HttpSession session = httpServletRequest.getSession();
 
-        if(session.getAttribute("admin") == null) {
-            httpServletResponse.sendRedirect("/login");
+        if(session.getAttribute("admin") != null) {
+            chain.doFilter(request, response);
         }
+        httpServletResponse.sendRedirect("/login");
 
-        chain.doFilter(request, response);
     }
 }
