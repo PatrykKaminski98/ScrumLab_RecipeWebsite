@@ -14,8 +14,8 @@ import java.util.List;
 public class RecipeList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RecipeDao recipeDao = new RecipeDao();
         HttpSession session = request.getSession();
+        RecipeDao recipeDao = new RecipeDao();
         List<Recipe> allRecipes = recipeDao.findAll((Admin) session.getAttribute("admin"));
         request.setAttribute("recipes", allRecipes);
         getServletContext().getRequestDispatcher("/recipe_list.jsp").forward(request, response);

@@ -20,11 +20,10 @@ public class PlanDetails extends HttpServlet {
         List<pl.coderslab.model.PlanDetails> planDetails = planDao.getPlanDetails(Integer.parseInt(request.getParameter("id")));
 
 
+        request.setAttribute("plan", plan);
         if (planDetails.size() > 0) {
-            request.setAttribute("plan", plan);
             request.setAttribute("details", planDetails);
             request.setAttribute("planDays", getPlanDays(planDetails));
-
         }
 
         request.getServletContext().getRequestDispatcher("/planDetails.jsp").forward(request, response);
