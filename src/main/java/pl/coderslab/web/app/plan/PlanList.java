@@ -16,7 +16,11 @@ public class PlanList extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PlanDao planDao = new PlanDao();
         HttpSession session = request.getSession();
-        List<Plan> allPlans = planDao.findAll((Admin) session.getAttribute("admin"));
+        if(session.getAttribute("admin") == null) {
+            response.sendRedirect("/login");
+        }
+            List<Plan> allPlans = planDao.findAll((Admin) session.getAttribute("admin"));
+
         request.setAttribute("plans", allPlans);
         getServletContext().getRequestDispatcher("/plan_list.jsp")
                     .forward(request, response);
