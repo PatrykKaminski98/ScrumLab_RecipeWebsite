@@ -16,7 +16,7 @@ public class DeleteRecipeFromPlan extends HttpServlet {
         String mealName = request.getParameter("mealName");
         request.setAttribute("recipeId", recipeId);
         request.setAttribute("planId", planId);
-        getServletContext().getRequestDispatcher("/confirmDelete.jsp")
+        getServletContext().getRequestDispatcher("/confirmDeleteRecipeFromPlan.jsp")
                 .forward(request, response);
 
 
