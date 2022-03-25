@@ -22,6 +22,16 @@ public class AllRecipeList extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            String search = request.getParameter("search");
+            String regex = ".*".concat(search).concat(".*");
+            System.out.println(regex);
+
+            RecipeDao recipeDao = new RecipeDao();
+            List<Recipe> allRecipes = recipeDao.findAbsoluteAll();
+            allRecipes.removeIf(recipe -> !recipe.getName().matches(regex));
+            request.setAttribute("recipes", allRecipes);
+                getServletContext().getRequestDispatcher("/allRecipe.jsp")
+                        .forward(request, response);
 
     }
 }

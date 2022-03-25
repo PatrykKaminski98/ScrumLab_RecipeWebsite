@@ -11,7 +11,9 @@
             <div class="dashboard-content border-dashed p-3 m-4 view-height">
                 <div class="row border-bottom border-3 p-1 m-1">
                     <div class="col noPadding"><h3 class="color-header text-uppercase">Lista Przepisów</h3></div>
-                    <div class="col noPadding d-flex justify-content-end mb-2"><a href="${pageContext.request.contextPath}/app/recipe/add" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Dodaj przepis</a></div>
+                    <div class="col noPadding d-flex justify-content-end mb-2">
+                            <form method="post"><h4 class="">Wyszukaj po nazwie</h4><input class="" type="text" name="search"><input type="submit" value="Wyszukaj"></form>
+                        </div>
                 </div>
                 <table class="table border-bottom schedules-content">
                     <thead>
