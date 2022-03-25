@@ -23,6 +23,9 @@ public class Login extends HttpServlet {
         String password = request.getParameter("password");
         Admin admin = adminDao.loginAuthorization(email, password);
         if(admin != null){
+            if(admin.getEnable() == 0) {
+                request.getServletContext().getRequestDispatcher("/wrong_login.jsp").forward(request, response);
+            }
             HttpSession session = request.getSession();
             session.setAttribute("admin", admin);
 
