@@ -35,9 +35,13 @@
                                 <td class="col-3">${user.firstName}</td>
                                 <td class="col-6">${user.lastName}</td>
                                 <td class="col-2 center">
-                                    <c:if test="${user.superadmin == 0 && current == 1}">
-                                        <a href="${pageContext.request.contextPath}/app/dashboard" class="btn btn-danger rounded-0 text-light m-1">Blokuj</a>
+                                    <c:if test="${user.superadmin == 0 && current == 1 && user.enable == 1}">
+                                        <a id="block" href="${pageContext.request.contextPath}/app/blockUser?id=${user.id}" class="btn btn-danger rounded-0 text-light m-1">Blokuj</a>
                                     </c:if>
+                                    <c:if test="${user.enable == 0}">
+                                        <a id="unblock" href="${pageContext.request.contextPath}/app/blockUser?id=${user.id}" class="btn btn-danger rounded-0 text-light m-1">Zablokowany</a>
+                                    </c:if>
+
                                 </td>
                             </tr>
                         </c:forEach>
