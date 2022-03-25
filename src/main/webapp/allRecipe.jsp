@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <jsp:include page="header.jsp"/>
-
+<link href="${pageContext.request.contextPath}/css/Search-bar.css" rel="stylesheet" type="text/css">
 <section class="dashboard-section">
     <div class="row dashboard-nowrap">
 
@@ -12,7 +12,7 @@
                 <div class="row border-bottom border-3 p-1 m-1">
                     <div class="col noPadding"><h3 class="color-header text-uppercase">Lista Przepisów</h3></div>
                     <div class="col noPadding d-flex justify-content-end mb-2">
-                            <form method="post"><h4 class="">Wyszukaj po nazwie</h4><input class="" type="text" name="search"><input type="submit" value="Wyszukaj"></form>
+                            <form method="post"><h4 class="search-bar">Wyszukaj po nazwie</h4><input class="search-input" type="text" name="search"><input type="submit" value="Wyszukaj"></form>
                         </div>
                 </div>
                 <table class="table border-bottom schedules-content">
@@ -28,7 +28,7 @@
                     <c:forEach items="${recipes}" var="recipe">
                         <tr class="d-flex">
                             <th scope="row" class="col-1">${recipe.id}</th>
-                            <td class="col-2">
+                            <td class="col-2 recipe-name">
                                     ${recipe.name}
                             </td>
                             <td class="col-7">${recipe.description}</td>
@@ -45,5 +45,5 @@
         </div>
     </div>
 </section>
-
+<script src="${pageContext.request.contextPath}/js/search_bar.js"></script>
 <jsp:include page="footer.jsp"/>
