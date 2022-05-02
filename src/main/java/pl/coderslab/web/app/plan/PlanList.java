@@ -22,7 +22,7 @@ public class PlanList extends HttpServlet {
             List<Plan> allPlans = planDao.findAll((Admin) session.getAttribute("admin"));
 
         request.setAttribute("plans", allPlans);
-        getServletContext().getRequestDispatcher("/plan_list.jsp")
+        getServletContext().getRequestDispatcher("/WEB-INF/plan/plan_list.jsp")
                     .forward(request, response);
     }
 

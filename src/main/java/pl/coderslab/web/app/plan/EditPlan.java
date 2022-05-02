@@ -27,7 +27,7 @@ public class EditPlan extends HttpServlet {
 
 
 
-        request.getServletContext().getRequestDispatcher("/plan_edit.jsp").forward(request, response);
+        request.getServletContext().getRequestDispatcher("/WEB-INF/plan/plan_edit.jsp").forward(request, response);
     }
 
     @Override

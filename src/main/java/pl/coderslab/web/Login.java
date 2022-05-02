@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+        request.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     }
 
     @Override
@@ -24,14 +24,14 @@ public class Login extends HttpServlet {
         Admin admin = adminDao.loginAuthorization(email, password);
         if(admin != null){
             if(admin.getEnable() == 0) {
-                request.getServletContext().getRequestDispatcher("/wrong_login.jsp").forward(request, response);
+                request.getServletContext().getRequestDispatcher("/WEB-INF/wrong_login.jsp").forward(request, response);
             }
             HttpSession session = request.getSession();
             session.setAttribute("admin", admin);
 
             response.sendRedirect("/app/dashboard");
         } else {
-            request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+            request.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }
 
 

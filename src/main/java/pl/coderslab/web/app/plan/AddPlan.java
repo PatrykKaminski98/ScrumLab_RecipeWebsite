@@ -13,7 +13,7 @@ import java.io.IOException;
 public class AddPlan extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            getServletContext().getRequestDispatcher("/add_plan.jsp")
+            getServletContext().getRequestDispatcher("/WEB-INF/plan/add_plan.jsp")
                     .forward(request, response);
     }
 

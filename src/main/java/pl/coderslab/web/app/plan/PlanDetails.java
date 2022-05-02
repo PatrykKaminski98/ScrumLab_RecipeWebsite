@@ -26,7 +26,7 @@ public class PlanDetails extends HttpServlet {
             request.setAttribute("planDays", getPlanDays(planDetails));
         }
 
-        request.getServletContext().getRequestDispatcher("/planDetails.jsp").forward(request, response);
+        request.getServletContext().getRequestDispatcher("/WEB-INF/plan/planDetails.jsp").forward(request, response);
 
     }
 

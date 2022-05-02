@@ -1,4 +1,4 @@
-package pl.coderslab.web.app;
+package pl.coderslab.web.app.user;
 
 import pl.coderslab.dao.AdminDao;
 import pl.coderslab.model.Admin;
@@ -19,7 +19,7 @@ public class UsersList extends HttpServlet {
         Admin admin = (Admin) session.getAttribute("admin");
         request.setAttribute("current", admin.getSuperadmin());
         request.setAttribute("users", allUsers);
-        getServletContext().getRequestDispatcher("/users_list.jsp")
+        getServletContext().getRequestDispatcher("/WEB-INF/user/users_list.jsp")
                 .forward(request, response);
 
     }

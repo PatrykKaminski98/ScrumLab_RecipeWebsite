@@ -13,7 +13,7 @@ public class Register extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        request.getServletContext().getRequestDispatcher("/registration.jsp").forward(request, response);
+        request.getServletContext().getRequestDispatcher("/WEB-INF/registration.jsp").forward(request, response);
 
 
     }
@@ -36,9 +36,9 @@ public class Register extends HttpServlet {
         admin.setPassword(pass1);
         if(adminDao.registerValidate(admin)){
             adminDao.create(admin);
-            response.sendRedirect("/login");
+            response.sendRedirect("/WEB-INF/login");
         } else {
-            request.getServletContext().getRequestDispatcher("/badregistration.jsp").forward(request, response);
+            request.getServletContext().getRequestDispatcher("/WEB-INF/badregistration.jsp").forward(request, response);
 
         }
 

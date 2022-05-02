@@ -1,4 +1,4 @@
-package pl.coderslab.web.app;
+package pl.coderslab.web.app.user;
 
 import pl.coderslab.dao.AdminDao;
 import pl.coderslab.model.Admin;
@@ -15,7 +15,7 @@ public class ChangePassword extends HttpServlet {
         HttpSession session = request.getSession();
         Admin admin = (Admin) session.getAttribute("admin");
 
-        request.getServletContext().getRequestDispatcher("/user_change_password.jsp").forward(request, response);
+        request.getServletContext().getRequestDispatcher("/WEB-INF/user/user_change_password.jsp").forward(request, response);
     }
 
     @Override

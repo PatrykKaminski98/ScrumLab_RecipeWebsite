@@ -1,13 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<jsp:include page="headerLoggedIn.jsp"/>
+<jsp:include page="../../headerLoggedIn.jsp"/>
 
 
 <section class="dashboard-section">
     <div class="row dashboard-nowrap">
 
-        <jsp:include page="left_panel.jsp"/>
+        <jsp:include page="../../left_panel.jsp"/>
 
         <div class="m-4 p-3 width-medium text-color-darker">
             <div class="m-4 border-dashed view-height">
@@ -48,4 +48,4 @@
     </div>
 </section>
 <script src="${pageContext.request.contextPath}/js/change_password.js"></script>
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../../footer.jsp"/>

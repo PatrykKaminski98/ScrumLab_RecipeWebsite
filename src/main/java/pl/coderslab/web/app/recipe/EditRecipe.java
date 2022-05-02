@@ -26,7 +26,7 @@ public class EditRecipe extends HttpServlet {
         Recipe recipe = recipeDao.read(id);
         request.setAttribute("recipe", recipe);
 
-        request.getServletContext().getRequestDispatcher("/recipe_edit.jsp").forward(request, response);
+        request.getServletContext().getRequestDispatcher("/WEB-INF/recipe/recipe_edit.jsp").forward(request, response);
 
 
     }

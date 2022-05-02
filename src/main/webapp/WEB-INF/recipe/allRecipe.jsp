@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<jsp:include page="header.jsp"/>
+<jsp:include page="../../header.jsp"/>
 <link href="${pageContext.request.contextPath}/css/Search-bar.css" rel="stylesheet" type="text/css">
 <section class="dashboard-section">
     <div class="row dashboard-nowrap">
@@ -46,4 +46,4 @@
     </div>
 </section>
 <script src="${pageContext.request.contextPath}/js/search_bar.js"></script>
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../../footer.jsp"/>

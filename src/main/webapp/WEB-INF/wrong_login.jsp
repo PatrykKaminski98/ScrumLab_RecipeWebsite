@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<jsp:include page="header.jsp"/>
+<jsp:include page="../header.jsp"/>
 <section class="dashboard-section">
     <div class="container pt-4 pb-4">
         <div class="border-dashed view-height">
@@ -16,9 +16,10 @@
                     </div>
                     <button class="btn btn-color rounded-0" type="submit">Zaloguj</button>
                 </form>
+                <p>Twoje konto jest nieaktywne. Zostało wyłączone przez administratora lub nie potwierdziłeś/aś jeszcze konta poprzez email</p>
             </div>
         </div>
     </div>
 </section>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../footer.jsp"/>

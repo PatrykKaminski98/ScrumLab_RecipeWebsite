@@ -1,4 +1,4 @@
-package pl.coderslab.web;
+package pl.coderslab.web.app.recipe;
 
 import pl.coderslab.dao.RecipeDao;
 import pl.coderslab.model.Recipe;
@@ -16,7 +16,7 @@ public class AllRecipeList extends HttpServlet {
         RecipeDao recipeDao = new RecipeDao();
         List<Recipe> allRecipes = recipeDao.findAbsoluteAll();
         request.setAttribute("recipes", allRecipes);
-        getServletContext().getRequestDispatcher("/allRecipe.jsp")
+        getServletContext().getRequestDispatcher("/WEB-INF/recipe/allRecipe.jsp")
                 .forward(request, response);
     }
 
@@ -30,7 +30,7 @@ public class AllRecipeList extends HttpServlet {
             List<Recipe> allRecipes = recipeDao.findAbsoluteAll();
             allRecipes.removeIf(recipe -> !recipe.getName().matches(regex));
             request.setAttribute("recipes", allRecipes);
-                getServletContext().getRequestDispatcher("/allRecipe.jsp")
+                getServletContext().getRequestDispatcher("/WEB-INF/recipe/allRecipe.jsp")
                         .forward(request, response);
 
     }

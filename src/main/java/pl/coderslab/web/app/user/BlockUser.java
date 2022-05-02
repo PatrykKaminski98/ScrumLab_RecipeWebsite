@@ -1,4 +1,4 @@
-package pl.coderslab.web.app;
+package pl.coderslab.web.app.user;
 
 import pl.coderslab.dao.AdminDao;
 import pl.coderslab.model.Admin;
@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(name = "blockUser", value = "/app/blockUser")
-public class blockUser extends HttpServlet {
+public class BlockUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             int id = Integer.parseInt(request.getParameter("id"));
@@ -24,7 +24,7 @@ public class blockUser extends HttpServlet {
             Admin admin = (Admin) session.getAttribute("admin");
             request.setAttribute("current", admin.getSuperadmin());
             request.setAttribute("users", allUsers);
-            getServletContext().getRequestDispatcher("/users_list.jsp")
+            getServletContext().getRequestDispatcher("/WEB-INF/user/users_list.jsp")
                     .forward(request, response);
     }
 

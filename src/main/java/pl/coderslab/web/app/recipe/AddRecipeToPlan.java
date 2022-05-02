@@ -30,7 +30,7 @@ public class AddRecipeToPlan extends HttpServlet {
         request.setAttribute("days", allDays);
         request.setAttribute("recipes", allRecipes);
         request.setAttribute("plans", allPlans);
-        getServletContext().getRequestDispatcher("/add_recipe_to_plan.jsp")
+        getServletContext().getRequestDispatcher("/WEB-INF/recipe/add_recipe_to_plan.jsp")
                 .forward(request, response);
     }
 

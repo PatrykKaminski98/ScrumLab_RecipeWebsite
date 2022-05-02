@@ -14,7 +14,7 @@ import java.io.IOException;
 public class AddRecipe extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/add_recipe.jsp")
+        getServletContext().getRequestDispatcher("/WEB-INF/recipe/add_recipe.jsp")
                 .forward(request, response);
     }
 

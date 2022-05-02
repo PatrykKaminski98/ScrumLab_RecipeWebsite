@@ -1,4 +1,4 @@
-package pl.coderslab.web.app;
+package pl.coderslab.web;
 
 import pl.coderslab.dao.PlanDao;
 import pl.coderslab.dao.RecipeDao;
@@ -39,7 +39,7 @@ public class Dashboard extends HttpServlet {
                 request.setAttribute("planName", getPlanName(lastPlan));
             }
 
-            request.getServletContext().getRequestDispatcher("/dashboard.jsp").forward(request, response);
+            request.getServletContext().getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(request, response);
         }
     }
 

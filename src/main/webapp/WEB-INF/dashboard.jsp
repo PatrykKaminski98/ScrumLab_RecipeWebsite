@@ -1,13 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<jsp:include page="headerLoggedIn.jsp"/>
+<jsp:include page="../headerLoggedIn.jsp"/>
 
 <%-- Poprawic linki jak juz beda strony--%>
 <section class="dashboard-section">
     <div class="row dashboard-nowrap">
 
-        <jsp:include page="left_panel.jsp"></jsp:include>
+        <jsp:include page="../left_panel.jsp"></jsp:include>
         <div class="m-4 p-4 width-medium">
             <div class="dashboard-header m-4">
                 <div class="dashboard-menu">
@@ -81,4 +81,4 @@
     </div>
 </section>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../footer.jsp"/>
