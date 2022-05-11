@@ -2,18 +2,18 @@
 
 # ScrumLab
 
-## CookingWebsite
+## RecipeWebsite
 
-CookingWebsite is a website where users can add their own recipies and share them with others.
-Website allows users to edit their own recipies or delete them.
-User can set recipie's name, list of ingredients, time required to prepare the meal and lastly add the description how to prepare the meal.
-With added recipies, users can create meal plans for any day of the week. 
+Project created as part of ScrumLab. This is part of the Java Developer course aimed at teaching team work and the Scrum methodology.
+
+This page is used to save culinary recipes. The user can freely add, modify, delete and add them to the plans. A plan can be set for the whole week depending on the type of meal.
+
 
 ## Technologies:
 - MYSQL
 - Servlets
 - Java 8
-- JavaServer Pages
+- JSP
 - Maven
 - JavaScript
 - CSS
